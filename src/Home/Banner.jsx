@@ -13,6 +13,7 @@ const loop = {
 };
 
 class Banner extends React.PureComponent {
+
   static propTypes = {
     className: PropTypes.string,
   }

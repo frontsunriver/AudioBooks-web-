@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
 const { Header, Content, Sider } = Layout;
 
@@ -28,7 +29,10 @@ function Admin(props) {
             </Sider>
             <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }}>
-                
+                {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                className: 'trigger',
+                onClick: {toggle},
+                })}
             </Header>
             <Content
                 className="site-layout-background"

@@ -26,6 +26,7 @@ class Home extends React.PureComponent {
       appLocale,
       isMobile,
     };
+    this.changeLanguage = this.changeLanguage.bind(this);
   }
   componentDidMount() {
     enquireScreen((b) => {
@@ -34,12 +35,27 @@ class Home extends React.PureComponent {
       });
     });
   }
+
+  changeLanguage(lang) {
+      console.log(lang);
+      let appLocale;
+      if(lang == 'eng'){
+        appLocale = enLocale; 
+      }else if(lang == 'china'){
+        appLocale = cnLocale;
+      }
+      addLocaleData(appLocale.data);
+      this.setState({
+        appLocale: appLocale,
+      });
+      console.log(this.state);
+  }
   render() {
     const { appLocale } = this.state;
     return (
       <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
-        <div className="page-wrapper home container-fluid">
-          <Header />
+        <div className="page-wrapper home">
+          <Header changeLanguage={this.changeLanguage} />
           <Banner isMobile={this.state.isMobile} />
           <Page1 isMobile={this.state.isMobile} />
           <Page2 isMobile={this.state.isMobile} />
